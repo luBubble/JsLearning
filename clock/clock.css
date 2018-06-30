@@ -1,0 +1,44 @@
+html,body
+{
+	margin: 0;
+	padding: 0;
+	text-align: center;/*使inline-block水平居中*/
+}
+.wrapper
+{
+	display: inline-block;
+	margin: 40px auto;
+}
+span
+{
+	font-size: 2rem;
+	color: crimson;
+}
+img
+{
+	height: 60px;
+}
+.date, .hour,.minute,.seconds
+{
+	display: inline-block;
+}
+.time
+{
+	margin-top: 40px;
+}
+#late-img
+{
+	z-index: 6;
+	display: block;
+	margin: 20px auto;
+}
+#late-alert
+{
+	width: 100px;
+	height: 100px;
+	background-color: yellowgreen;
+	position: absolute;
+	left:54%;
+	top:78%;
+	display: none;
+}

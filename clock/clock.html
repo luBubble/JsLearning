@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>时钟</title>
+		<link rel="stylesheet" href="clock.css" />
+	</head>
+	<body>
+		<div class="wrapper">
+		<div class="date">
+			<img class="date-img" src="../img/2.png" />
+			<img class="date-img" src="../img/0.png" />
+			<img class="date-img" src="../img/1.png" />
+			<img class="date-img" src="../img/8.png" />
+			<span>年</span>
+			<img class="date-img" src="../img/0.png" />
+			<img class="date-img" src="../img/1.png" />
+			<span>月</span>
+			<img class="date-img" src="../img/1.png" />
+			<img class="date-img" src="../img/8.png" />
+			<span>日</span>
+		</div>
+		<div class="time">
+			<div class="hour">
+				<img class="time-img" src="../img/0.png"/>
+				<img class="time-img" src="../img/0.png"/>
+			</div>
+			<img src="../img/split.png"/>
+			<div class="minute">
+				<img class="time-img" src="../img/0.png"/>
+				<img class="time-img" src="../img/0.png"/>
+			</div>
+			<img src="../img/split.png"/>
+			<div class="seconds">
+				<img class="time-img" src="../img/0.png"/>
+				<img class="time-img" src="../img/0.png"/>
+			</div>
+		</div>
+		<div style="margin:40px 0;">
+			<span>延迟提示框</span>
+			<img id="late-img" class="hh" src="../img/0.png"/>
+			<div id="late-alert"></div>
+		</div>
+		</div>
+		<script src="clock.js"></script>
+	</body>
+</html>
