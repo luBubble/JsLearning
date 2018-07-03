@@ -37,14 +37,31 @@ var targetImg=document.getElementById("late-img");
 //var targetImg=document.getElementsByClassName("hh");
 //根据类名获取的是元素数组，绑定鼠标移入移出触发的事件具体到单个元素
 var lateAlert=document.getElementById("late-alert");
+var alertGone=null;
 targetImg.onmouseover=function()
 {
+	clearTimeout(alertGone);//关闭从提示框移出时的定时器
 	lateAlert.style.display='block';
 };
 
 targetImg.onmouseout=function()
 {
-	lateAlert.style.display='none';
+	alertGone=setTimeout(function(){
+		lateAlert.style.display='none';
+	},500);
 };
+
+lateAlert.onmouseover=function()
+{
+	clearTimeout(alertGone);
+};
+
+lateAlert.onmouseout=function()
+{
+	alertGone=setTimeout(function(){
+		lateAlert.style.display='none';
+	},500);//鼠标从提示框移出时，提示框消失
+}
+
 
 }

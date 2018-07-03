@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>冒泡机制</title>
+		<style>
+			body,html
+			{
+				padding: 0;
+				margin: 0;
+				width:100%;
+				height: 100%;
+			}
+			#father
+			{
+				background-color: darkred;
+				width: 100px;
+				height: 100px;
+			}
+			#div1
+			{
+				background-color: darkseagreen;
+				padding: 20px;
+			}
+			#div2
+			{
+				background-color: mistyrose;
+				padding: 20px;
+			}
+			#div3
+			{
+				background-color: skyblue;
+				padding: 20px;
+			}
+			#cover
+			{
+				background-color: #000;
+				opacity: 0.5;
+				filter: alpha(opacity:40);
+				width:100%;
+				height: 100%;
+				position: absolute;
+				top:0;
+				left: 0;
+				display:none;
+			}
+			#cover-solid-div
+			{
+				background-color: cadetblue;
+				width:200px;
+				height: 200px;
+				position: fixed;
+				left: 50%;
+				top:50%;
+				margin-left: -100px;
+				margin-top: -100px;
+				display:none;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div id="father">
+			<button id="btn">哈哈哈</button>
+		</div>
+		<br />
+		<div id="div1">
+        	div1
+    		<div id="div2">
+                div2
+        		<div id="div3">
+                    div3
+        		</div>
+    		</div>
+		</div>
+		<br />
+		<button id="btn-cover">显示蒙版遮罩</button>
+		<div id="cover"></div>
+		<div id="cover-solid-div"></div>
+		<script>
+			var father=document.getElementById('father');
+			var btn=document.getElementById('btn');
+			
+			/*冒泡规则 从当前元素向父元素冒泡
+			 * IE 6.0 div->body->html->document
+			 * 其他浏览器  div->body->html->document->window
+			 * 事件捕获与冒泡相反
+			 * 各级事件又有捕获又有冒泡时，首是进入捕获阶段，直到达到目标元素，再进入冒泡阶段。
+			 */
+			function stopBubble(event){
+				//阻止冒泡
+				if(event && event.stopPropagation)//W3C标准
+				{
+					event.stopPropagation();
+				}else{
+					event.cancelBubble=true;//IE6、7、8
+				}
+			}
+			
+			btn.onclick=function(event)
+			{
+				stopBubble(event);//阻止冒泡
+				alert("哈哈哈");
+			}
+			father.onclick=function()
+			{
+				alert("我是你爸爸");
+			}
+//			document.onclick=function()
+//			{
+//				alert("老子天下第一");
+//			}
+			
+			var div1 =document.getElementById('div1');
+			var div2 =document.getElementById('div2');
+			var div3 =document.getElementById('div3');
+   			div1.addEventListener('click',function(){
+        		alert('div1');
+     		 },true);//false为冒泡事件，true为事件捕获
+    		div2.addEventListener('click',function(){
+        		alert('div2');
+      		},true);
+    		div3.addEventListener('click',function(){
+        		alert('div3');
+      		},false);
+			
+			var btnCover=document.getElementById('btn-cover');
+			var cover=document.getElementById('cover');
+			var coverDiv=document.getElementById('cover-solid-div');
+			
+			btnCover.onclick=function()
+			{
+				cover.style.display='block';
+				coverDiv.style.display='block';
+				document.body.style.overflow='hidden';//显示蒙版时页面不能滚动
+			}
+			
+			//自己的方法
+			cover.onclick=function()
+			{
+				this.style.display='none';
+				coverDiv.style.display='none';
+				document.body.style.overflow='auto';
+			}
+			//跳转其他地方
+			coverDiv.onclick=function()
+			{
+				stopBubble(event);
+				window.location='http://www.baidu.com';
+			}
+			
+			//老师的方法,需要在按钮监听中阻止冒泡
+//			document.onclick=function(event)
+//			{
+//				var e=event||window.event;
+//				//获取点击的标签
+//				var targetId=e.target?e.target.id:e.scrElement.id;
+//				 console.log(targetId);
+//				 if(targetId!='cover-solid-div')
+//				 {
+//				 	//隐藏蒙版和面板
+//				 	this.style.display='none';
+//					coverDiv.style.display='none';
+//					//显示滚动条
+//					document.body.style.overflow='auto';
+//				 }
+//				 else if(targetId=='cover-solid-div')
+//				 {
+//				 	window.location='http://www.baidu.com';
+//				 }
+//			}
+		</script>
+	</body>
+</html>

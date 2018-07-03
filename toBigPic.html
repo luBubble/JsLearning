@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>放大镜效果</title>
+		<style>
+			#small_box,#small_pic
+			{
+				width: 200px;
+				height:200px;
+				position: relative;
+			}
+			
+			#big_box{
+				width: 400px;
+				height: 400px;
+			}
+			#big_pic
+			{
+				width: 800px;
+				height: 800px;
+				position: absolute;
+			}
+			#small_box,#big_box
+			{
+				border: 1px solid lightgray;
+			}
+			#big_box
+			{
+				position: absolute;
+				top:8px;
+				left: 216px;
+				display: none;
+				overflow: hidden;
+			}
+			#move_box
+			{
+				width: 50px;
+				height: 50px;
+				border: 2px solid cadetblue;
+				position: absolute;
+				top:0;
+				left:0;
+				display: none;
+			}
+			li
+			{
+				display:inline-block;
+			}
+			li img
+			{
+				width: 50px;
+				height: 50px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id='small_box'>
+			<img id="small_pic" src="img/timg.jpg" />
+			<span id="move_box"></span>
+		</div>
+		<ul>
+			<li><img id="pic1" src="img/timg.jpg" /></li>
+			<li><img id="pic2" src="img/timg2.jpg" /></li>
+		</ul>
+		<div id='big_box'>
+				<img id="big_pic" src="img/timg.jpg" />
+		</div>
+		<script>
+			window.onload=function()
+			{
+				var smallBox=document.getElementById('small_box');
+				var bigBox=document.getElementById('big_box');
+				var pic1=document.getElementById('pic1');
+				var pic2=document.getElementById('pic2');
+				var moveDiv=smallBox.children[1];
+				//鼠标移入小图片事件
+//				function showPic(obj)
+//				{
+//					smallBox.children[0].src=obj.src;
+//				}
+			    pic1.onmouseover=function()
+			    {
+			    	smallBox.children[0].src=this.src;
+			    }
+			    pic2.onmouseover=function()
+			    {
+			    	smallBox.children[0].src=this.src;
+			    }
+			    
+			    //查看细节
+				smallBox.onmouseover=function()
+				{
+					bigBox.children[0].src=this.children[0].src;
+					moveDiv.style.display='block';
+					bigBox.style.display='block';
+					
+					//！！！！！监听鼠标的移动
+					smallBox.onmousemove=function(event)
+					{
+						var e=event||window.event;
+						//获取鼠标距离smallBox左边、上边的距离
+						var pointX=e.clientX-this.offsetLeft-moveDiv.offsetWidth*0.5;
+						var pointY=e.clientY-this.offsetTop-moveDiv.offsetHeight*0.5;
+						
+						console.log(pointX+"===="+pointY);
+						//控制边界
+						if(pointX<0)
+						{
+							pointX=0;
+						}
+						else if(pointX>this.offsetWidth-moveDiv.offsetWidth)
+						{
+							pointX=this.offsetWidth-moveDiv.offsetWidth;
+						}
+						//垂直方向
+						if(pointY<0)
+						{
+							pointY=0;
+						}
+						else if(pointY>this.offsetHeight-moveDiv.offsetHeight)
+						{
+							pointY=this.offsetHeight-moveDiv.offsetHeight;
+						}
+						
+						//大图跟着动
+						bigBox.children[0].style.left=(pointX)*(-4)+"px";
+						bigBox.children[0].style.top=(pointY)*(-4)+"px";
+						
+						//修改正方块的定位,要记得加'px'
+						moveDiv.style.left=pointX+'px';
+						moveDiv.style.top=pointY+'px';
+						
+						
+						
+					}
+					
+				}
+				
+				//鼠标移出
+				smallBox.onmouseout=function()
+				{
+					this.children[1].style.display='none';
+					bigBox.style.display='none';
+				}
+			}
+		</script>
+	</body>
+</html>

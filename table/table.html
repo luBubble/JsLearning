@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>表格的便捷操作</title>
+		<style>
+			table
+			{
+				width: 500px;
+				margin-top: 20px;
+				border-collapse: collapse;
+			}
+			table,th,td
+			{
+				border: 1px solid darkred;
+			}
+		</style>
+	</head>
+	<body>
+		姓名：<input id="newMan"/>
+		<button id="addMan">添加</button>
+		<table >
+			<thead>
+				<tr>
+					<th>序号</th>
+					<th>姓名</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>1</td>
+					<td>张三</td>
+				</tr>
+				<tr>
+					<td>2</td>
+					<td>李四</td>
+				</tr>
+				<tr>
+					<td>3</td>
+					<td>王五</td>
+				</tr>
+				<tr>
+					<td>4</td>
+					<td>琳琳</td>
+				</tr>
+				<tr>
+					<td>5</td>
+					<td>圆圆</td>
+				</tr>
+				<tr>
+					<td>6</td>
+					<td>芳芳</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<td>模拟</td>
+					<td>表尾</td>
+				</tr>
+			</tfoot>
+		</table>
+		<script src="table.js"></script>
+	</body>
+</html>

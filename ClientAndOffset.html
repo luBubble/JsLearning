@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>client、offset、scroll家族</title>
+		<style>
+			body,html{
+				padding:0;
+				margin: 0;
+			}
+			#box
+			{
+				background-color: forestgreen;
+				border: 10px solid goldenrod;
+				padding: 30px;	
+				width:100px;
+				height: 200px;
+				position:relative;
+				left:66px;
+				top:88px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box"></div>
+		<script>
+			//width、height
+			var box=document.getElementById('box');
+			console.log(box.clientWidth+"=="+box.clientHeight);//padding+content
+			console.log(box.offsetWidth+"=="+box.offsetHeight);//border+padding+content
+			console.log(box.scrollWidth+"=="+box.scrollHeight);//滚动内容的宽高
+			
+			//top、left
+			console.log(box.clientTop+"=="+box.clientLeft);//上边边框宽度，左边边框宽度
+			console.log(box.offsetTop+"=="+box.offsetLeft);//上边/左边与有定位的父级盒子的距离
+			console.log(box.scrollTop+"=="+box.scrollLeft);//上边/左边滚动的宽度
+			
+			
+		</script>
+	</body>
+</html>

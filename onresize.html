@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>onresize和函数节流</title>
+	</head>
+	<body>
+		<script>
+			/*
+			 * 获取网页的宽度和高度
+			 */
+			function client()
+			{
+				if(window.innerWidth)//最新的方式,可以看见的区域
+				{
+					return {
+						width: window.innerWidth,
+						height:window.innerHeight
+					}
+				}
+				else if(document.compatMode==="CSS1Compat")
+				{
+					return {
+						width: document.documentElement.clientWidth,
+						height: document.documentElement.clientHeight
+					}
+				}
+				return {
+					width:document.body.clientWidth,
+					height:document.body.clientHeight
+				}
+			}
+			
+			function changeColor(){
+				console.log(1);
+				var width=client().width;
+				var color;
+					if(width>=960)
+					{
+						color='indianred';
+					}
+					else if(width>=640)
+					{
+						color='dodgerblue';
+					}
+					else if(width<640)
+					{
+						color='mediumseagreen';
+					}
+					document.body.style.backgroundColor=color;
+			}
+			
+			/*当屏幕宽度>=960时，页面背景颜色为红色
+			 * 当屏幕宽度>=640时，页面背景颜色为蓝色
+			 *  当屏幕宽度<640时，页面背景颜色为绿色 
+			 */
+			window.onload=function()
+			{
+				changeColor();
+//				window.onresize=changeColor;//普通方法
+				//节流
+				var timer=null;
+				window.onresize=function()
+				{
+					clearTimeout(timer);//保证只有一个定时器
+					timer=setTimeout(function(){
+						changeColor();
+					},200);
+				}
+			}
+		</script>
+	</body>
+</html>

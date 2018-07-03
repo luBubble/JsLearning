@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>进度条</title>
+		<style>
+			*
+			{
+				margin: 0;
+				padding: 0;
+			}
+			.container
+			{
+				width: 80%;
+				margin:0 auto;
+				padding: 40px;
+			}
+			#process_bg
+			{
+				height:18px;
+				width: 100%;
+				background-color: darkgray;
+				border-radius:6px;
+				position: relative;
+			}
+			#process_done{
+				height: 100%;
+				width: 20px;
+				background-color: darkred;
+				border-radius:6px;
+				position:absolute;
+				left:0;
+			}
+			#process_point{
+				width: 12px;
+				height: 140%;
+				border-radius:6px;
+				background-color: darkred;
+				position:absolute;
+				right:-6px;
+				top: -16%;
+			}
+		</style>
+	</head>
+	<body>
+		<div class='container'>
+			<div id="process_bg">
+				<div id="process_done">
+					<div id="process_point"></div>
+				</div>
+			</div>
+			<div id="process_value">0%</div>
+		</div>
+	<script>
+		
+	</script>
+	</body>
+</html>

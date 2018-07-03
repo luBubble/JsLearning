@@ -31,9 +31,10 @@ var numArray=[2,45,12,-7,5.6,-3.4,50,132];
 /*4.forEach
  * 循环
  */
-numArray.forEach(function(value,index){
-	console.log(index+":"+value)
-});
+
+//numArray.forEach(function(value,index){
+//	console.log(index+":"+value)
+//});
 
 
 /*5.map()
@@ -47,7 +48,7 @@ numArray.forEach(function(value,index){
 /*6.filter()
  * 返回一个新数组
  */
-//var tempArray=numArray.map(function(value,index){
+//var tempArray=numArray.filter(function(value,index){
 //	return index%2===0;
 //});
 //console.log(tempArray);
@@ -55,6 +56,16 @@ numArray.forEach(function(value,index){
 /*7.every
  * 每个都满足条件返回true
  */
+
 /*8.some
  * 只要有一个满足条件就返回true
  */
+
+//判断数组
+//A instanceof B
+var arr=[1,4,6,8];
+console.log(arr instanceof Array);//true
+console.log(arr instanceof Object);//true
+console.log(typeof arr);//object,直接拿到根源
+//Array.isArray(); 返回true/false
+console.log(arr.constructor);//[Function: Array]
